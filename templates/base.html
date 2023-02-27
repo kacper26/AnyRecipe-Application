@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Any Recipe</title>
+</head>
+<body>
+
+    <h1>Any Recipe Application</h1>
+    <p><b>Kononowicz kurwa</b></p>
+
+    <form action="/add" method="post">
+        <div>
+            <label for="title">Add ingredients</label>
+            <br>
+            <input type="text" name="title" placeholder="Ingredient name">
+            <button type="submit">Add</button>
+        </div>
+    </form>
+
+    {% for recipe in recipe_list %}
+        <p>{{ recipe.id }} | {{ recipe.title }}</p>
+
+        {% if recipe.complete == False %}
+            <span>Not completed</span>
+        {% else %}
+            <span>Completed</span>
+        {% endif %}
+
+        <a href="/complete/{{ recipe.id }}">Complete</a>
+        <a href="/delete/{{ recipe.id }}">Delete</a>
+
+
+    {% endfor %}
+
+</body>
+</html>
